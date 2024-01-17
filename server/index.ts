@@ -4,6 +4,7 @@ import http from 'http';
 import { DataBases } from './db/dataBase';
 import cors from 'cors'  // Import the cors middleware
 const app = express();
+const apiRouter = require('./routes');
 require('dotenv').config();
 
 const port = process.env.port;
@@ -31,8 +32,11 @@ app.get('/', (req, res) => {
   res.send('Welcome to shopify!');
 });
 
-app.get('/login',(req,res,next) => {
-  console.log(res.statusCode,'code');
+// app.use(require('./router'));
+// Use the central router
+app.use('/api', apiRouter);
+
+app.get('/login',(req:Request,res:Response,next:NextFunction) => {
   res.status(200).json({ message: 'Login successfull' });
 });
 

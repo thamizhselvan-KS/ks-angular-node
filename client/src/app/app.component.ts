@@ -14,5 +14,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ls.onLogin().subscribe( res => console.log(res) );
   }
 }
